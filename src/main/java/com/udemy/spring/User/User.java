@@ -1,4 +1,4 @@
-package com.udemy.spring.models;
+package com.udemy.spring.User;
 
 import lombok.*;
 
@@ -8,14 +8,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private Long id;
 
-    private final String name;
-    private final String email;
-    private final String phone;
-    private final String password;
+    private String name;
+    private String email;
+    private String phone;
+    private String password;
 }

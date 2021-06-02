@@ -1,4 +1,4 @@
-package com.udemy.spring.resources;
+package com.udemy.spring.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

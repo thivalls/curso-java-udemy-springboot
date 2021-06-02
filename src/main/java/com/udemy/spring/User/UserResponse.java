@@ -1,4 +1,4 @@
-package com.udemy.spring.resources;
+package com.udemy.spring.User;
 
 import lombok.Data;
 

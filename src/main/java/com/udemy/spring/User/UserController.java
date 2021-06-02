@@ -1,28 +1,25 @@
-package com.udemy.spring.resources;
+package com.udemy.spring.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
 @RequestMapping("users")
-public class User {
+public class UserController {
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping
     public String index() {
-        List<User> users = userRepository.findAll();
-        if(users.size() == 0) {
+        List<User> userControllers = userRepository.findAll();
+        if(userControllers.size() == 0) {
             return "Nenhum usuário cadastrado no banco de dados";
         }
-        return users.toString();
+        return userControllers.toString();
     }
 
     @PostMapping

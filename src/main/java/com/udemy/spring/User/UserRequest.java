@@ -1,7 +1,6 @@
-package com.udemy.spring.resources;
+package com.udemy.spring.User;
 
 import lombok.Data;
-import com.udemy.spring.models.User;
 
 @Data
 public class UserRequest {
