@@ -17,14 +17,14 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
-    private Instant instant;
+    private String instant;
     private OrderStatus status;
-    private User owner;
+    private String owner;
 
     public Order toOrder(EntityManager em) {
-        Optional<User> user = Optional.of(em.find(User.class, 1L));
+        Optional<User> user = Optional.of(em.find(User.class, owner));
         if (user.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner not found");
 
-        return new Order(null, instant, OrderStatus.OPENED, user.get());
+        return new Order(Instant.parse(instant), OrderStatus.OPENED, user.get());
     }
 }

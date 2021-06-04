@@ -38,6 +38,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> store(@RequestBody OrderRequest request) {
         Order order = request.toOrder(em);
+        System.out.println(order.toString());
         orderRepository.save(order);
         return ResponseEntity.ok(order);
     }

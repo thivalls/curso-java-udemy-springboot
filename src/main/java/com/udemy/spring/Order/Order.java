@@ -10,7 +10,6 @@ import java.time.Instant;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
@@ -26,4 +25,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+
+    public Order(Instant instant, OrderStatus status, User owner) {
+        this.instant = instant;
+        this.status = status;
+        this.owner = owner;
+    }
 }

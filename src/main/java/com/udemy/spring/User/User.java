@@ -1,5 +1,6 @@
 package com.udemy.spring.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.Order.Order;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
@@ -24,6 +25,7 @@ public class User {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<Order> orders = new ArrayList<>();
 
