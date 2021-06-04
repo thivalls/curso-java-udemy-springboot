@@ -1,11 +1,10 @@
 package com.udemy.spring.User;
 
+import com.udemy.spring.Order.Order;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -23,4 +22,7 @@ public class User {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany
+    private List<Order> orders;
 }
