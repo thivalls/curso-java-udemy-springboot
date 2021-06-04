@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityManager;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Optional;
 
 @Data
@@ -17,14 +17,14 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequest {
-    private Date momento;
+    private Instant instant;
     private OrderStatus status;
     private User owner;
 
     public Order toOrder(EntityManager em) {
         Optional<User> user = Optional.of(em.find(User.class, 1L));
-        if(user.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner not found");
+        if (user.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner not found");
 
-        return new Order(null, momento, OrderStatus.OPENED, user.get());
+        return new Order(null, instant, OrderStatus.OPENED, user.get());
     }
 }

@@ -28,7 +28,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> show(@PathVariable String id) {
+    public ResponseEntity<Order> show(@PathVariable Long id) {
         Optional<Order> order = orderRepository.findById(id);
         if(order.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Order not found!");
 

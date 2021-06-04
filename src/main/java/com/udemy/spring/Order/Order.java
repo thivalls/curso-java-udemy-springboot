@@ -6,21 +6,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date momento;
+    private Instant instant;
     @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private User owner;
 }

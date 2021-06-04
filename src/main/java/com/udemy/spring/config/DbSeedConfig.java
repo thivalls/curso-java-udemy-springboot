@@ -18,7 +18,7 @@ public class DbSeedConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for(int i=0; i < 10; i++) {
-            User user = new User(null, "Thiago " + (i+1), "user"+(i+1)+"@gmail.com", "(16) 9.9999.9999", "123456");
+            User user = new User("Thiago " + (i+1), "user"+(i+1)+"@gmail.com", "(16) 9.9999.9999", "123456");
             userRepository.save(user);
         }
     }

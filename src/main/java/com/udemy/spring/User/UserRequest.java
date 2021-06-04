@@ -10,6 +10,6 @@ public class UserRequest {
     private String password;
 
     public User toModel() {
-        return new User(null, name, email, phone, password);
+        return new User(name, email, phone, password);
     }
 }

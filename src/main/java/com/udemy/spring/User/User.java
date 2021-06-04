@@ -2,12 +2,13 @@ package com.udemy.spring.User;
 
 import com.udemy.spring.Order.Order;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,6 +24,13 @@ public class User {
     private String phone;
     private String password;
 
-    @OneToMany
-    private List<Order> orders;
+    @OneToMany(mappedBy = "owner")
+    private List<Order> orders = new ArrayList<>();
+
+    public User(String name, String email, String phone, String password) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
 }
