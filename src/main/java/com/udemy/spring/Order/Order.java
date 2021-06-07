@@ -1,24 +1,23 @@
 package com.udemy.spring.Order;
 
 import com.udemy.spring.User.User;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name = "orders")
+@Data
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Instant instant;
+    private LocalDateTime createdAt;
+
     @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
 
@@ -26,8 +25,8 @@ public class Order {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    public Order(Instant instant, OrderStatus status, User owner) {
-        this.instant = instant;
+    public Order(OrderStatus status, User owner) {
+        this.createdAt = LocalDateTime.now();
         this.status = status;
         this.owner = owner;
     }

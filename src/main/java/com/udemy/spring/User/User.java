@@ -3,18 +3,15 @@ package com.udemy.spring.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.Order.Order;
 import lombok.*;
-import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +24,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "owner")
+    @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
 
     public User(String name, String email, String phone, String password) {

@@ -10,9 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.time.Instant;
-import java.util.Arrays;
-
 @Configuration
 @Profile("test")
 public class DbSeedConfig implements CommandLineRunner {
@@ -24,10 +21,10 @@ public class DbSeedConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for(int i=0; i < 10; i++) {
-            User user = new User("Thiago " + (i+1), "user"+(i+1)+"@gmail.com", "(16) 9.9999.9999", "123456");
+        for (int i = 0; i < 10; i++) {
+            User user = new User("Thiago " + (i + 1), "user" + (i + 1) + "@gmail.com", "(16) 9.9999.9988", "123456");
             userRepository.save(user);
-            Order order = new Order(Instant.parse("2021-07-02T00:00:00Z"), OrderStatus.OPENED, user);
+            Order order = new Order(OrderStatus.OPENED, user);
             orderRepository.save(order);
         }
     }
