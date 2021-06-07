@@ -1,11 +1,15 @@
 package com.udemy.spring.entities.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.entities.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -18,8 +22,12 @@ public class Category {
     private Long Id;
 
     private String name;
+    
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
-//    @OneToMany
-//    @JoinColumn()
-//    private Product product;
+    public Category(Long id, String name) {
+        Id = id;
+        this.name = name;
+    }
 }
