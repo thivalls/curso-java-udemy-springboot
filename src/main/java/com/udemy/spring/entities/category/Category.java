@@ -22,7 +22,8 @@ public class Category {
     private Long Id;
 
     private String name;
-    
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
