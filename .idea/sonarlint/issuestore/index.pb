@@ -15,8 +15,6 @@ o
 ?src/main/java/com/udemy/spring/entities/order/OrderRequest.java,6/8/684d497a0cc55f902196076d63007160bd17a6a0
 r
 Bsrc/main/java/com/udemy/spring/entities/order/OrderController.java,d/8/d87c06e2686d0a08908246a357290b26ab18cf06
-r
-Bsrc/main/java/com/udemy/spring/entities/orderitems/OrderItems.java,b/7/b73f99cc9b8d7c56f5a9eabb263d21b0b1c7cd43
 f
 6src/main/java/com/udemy/spring/entities/user/User.java,0/9/094cff30b2b528ad57bd01502aa0eb5b48512915
 x
