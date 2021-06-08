@@ -5,6 +5,8 @@ import com.udemy.spring.entities.category.CategoryRepository;
 import com.udemy.spring.entities.order.Order;
 import com.udemy.spring.entities.order.OrderRepository;
 import com.udemy.spring.entities.order.OrderStatus;
+import com.udemy.spring.entities.orderitems.OrderItem;
+import com.udemy.spring.entities.orderitems.OrderProductPK;
 import com.udemy.spring.entities.product.Product;
 import com.udemy.spring.entities.product.ProductRepository;
 import com.udemy.spring.entities.user.User;
@@ -15,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Configuration
 @Profile("test")
@@ -52,11 +56,25 @@ public class DbSeedConfig implements CommandLineRunner {
 
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
-        for (int i = 0; i < 10; i++) {
-            User user = new User("Thiago " + (i + 1), "user" + (i + 1) + "@gmail.com", "(16) 9.9999.9988", "123456");
-            userRepository.save(user);
-            Order order = new Order(OrderStatus.OPENED, user);
-            orderRepository.save(order);
-        }
+        User user1 = new User("Thiago", "thiago@gmail.com", "(16) 9.9999.9988", "123456");
+        User user2 = new User("Amanda", "amanda@gmail.com", "(16) 9.9999.9988", "123456");
+        User user3 = new User("Theo", "theo@gmail.com", "(16) 9.9999.9988", "123456");
+        userRepository.saveAll(Arrays.asList(user1, user2, user3));
+
+//        Order order1 = new Order(OrderStatus.OPENED, user1);
+//        Set<OrderItem> items = new HashSet<>();
+//        OrderProductPK orderProductPK1 = new OrderProductPK();
+//        orderProductPK1.setOrder(order1);
+//        orderProductPK1.setProduct(p1);
+//        OrderProductPK orderProductPK2 = new OrderProductPK();
+//        orderProductPK1.setOrder(order1);
+//        orderProductPK1.setProduct(p2);
+//        OrderItem orderItem1 = new OrderItem(orderProductPK1, 2, 100.00);
+//        items.add(orderItem1);
+//        OrderItem orderItem2 = new OrderItem(orderProductPK2, 2, 100.00);
+//        items.add(orderItem2);
+//        order1.setItems(items);
+//        orderRepository.save(order1);
+
     }
 }

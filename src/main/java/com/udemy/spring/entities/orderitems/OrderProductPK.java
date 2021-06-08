@@ -3,6 +3,7 @@ package com.udemy.spring.entities.orderitems;
 import com.udemy.spring.entities.order.Order;
 import com.udemy.spring.entities.product.Product;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 
 @Embeddable
 @Data
+@EqualsAndHashCode
 public class OrderProductPK implements Serializable {
     private static final long serialVersionUID = 1L;
     @ManyToOne

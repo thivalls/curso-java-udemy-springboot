@@ -1,11 +1,14 @@
 package com.udemy.spring.entities.order;
 
+import com.udemy.spring.entities.orderitems.OrderItem;
 import com.udemy.spring.entities.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -24,6 +27,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(OrderStatus status, User owner) {
         this.createdAt = LocalDateTime.now();

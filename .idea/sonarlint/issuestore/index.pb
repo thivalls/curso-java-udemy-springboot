@@ -9,8 +9,6 @@ p
 @src/main/java/com/udemy/spring/entities/user/UserController.java,5/d/5da0436889b676d5ed375c64b49c08770a1437c5
 p
 @src/main/java/com/udemy/spring/entities/user/UserRepository.java,7/f/7f2712e98865ed03533f82c133e7e54c92d5ba44
-h
-8src/main/java/com/udemy/spring/entities/order/Order.java,f/4/f4a13be95b00a890bc723d25a3e7c39184d83588
 o
 ?src/main/java/com/udemy/spring/entities/order/OrderRequest.java,6/8/684d497a0cc55f902196076d63007160bd17a6a0
 r
@@ -21,8 +19,6 @@ x
 Hsrc/main/java/com/udemy/spring/entities/category/CategoryRepository.java,6/1/614f197d703266c9e7bae8211ce948ba19823e4b
 u
 Esrc/main/java/com/udemy/spring/entities/category/CategoryRequest.java,e/f/efcd900484db05ed60de4229dcd94c090f5826aa
-g
-7src/main/java/com/udemy/spring/config/DbSeedConfig.java,7/4/74b8e817adad7f58220d9f9f44b04e59e3463234
 v
 Fsrc/main/java/com/udemy/spring/entities/product/ProductRepository.java,2/b/2b4b03214a258b2345e21c5cd829dff93f22d591
 n
