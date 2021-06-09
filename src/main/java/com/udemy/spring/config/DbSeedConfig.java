@@ -6,7 +6,7 @@ import com.udemy.spring.entities.order.Order;
 import com.udemy.spring.entities.order.OrderRepository;
 import com.udemy.spring.entities.order.OrderStatus;
 import com.udemy.spring.entities.orderitems.OrderItem;
-import com.udemy.spring.entities.orderitems.OrderProductPK;
+import com.udemy.spring.entities.orderitems.OrderItemRepository;
 import com.udemy.spring.entities.product.Product;
 import com.udemy.spring.entities.product.ProductRepository;
 import com.udemy.spring.entities.user.User;
@@ -17,8 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 @Configuration
 @Profile("test")
@@ -34,6 +32,9 @@ public class DbSeedConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -61,20 +62,13 @@ public class DbSeedConfig implements CommandLineRunner {
         User user3 = new User("Theo", "theo@gmail.com", "(16) 9.9999.9988", "123456");
         userRepository.saveAll(Arrays.asList(user1, user2, user3));
 
-//        Order order1 = new Order(OrderStatus.OPENED, user1);
-//        Set<OrderItem> items = new HashSet<>();
-//        OrderProductPK orderProductPK1 = new OrderProductPK();
-//        orderProductPK1.setOrder(order1);
-//        orderProductPK1.setProduct(p1);
-//        OrderProductPK orderProductPK2 = new OrderProductPK();
-//        orderProductPK1.setOrder(order1);
-//        orderProductPK1.setProduct(p2);
-//        OrderItem orderItem1 = new OrderItem(orderProductPK1, 2, 100.00);
-//        items.add(orderItem1);
-//        OrderItem orderItem2 = new OrderItem(orderProductPK2, 2, 100.00);
-//        items.add(orderItem2);
-//        order1.setItems(items);
-//        orderRepository.save(order1);
+        Order order1 = new Order(OrderStatus.OPENED, user1);
 
+        orderRepository.save(order1);
+        orderItemRepository.saveAll(Arrays.asList(
+                new OrderItem(order1, p1, 2, 100.00),
+                new OrderItem(order1, p2, 2, 90.00),
+                new OrderItem(order1, p3, 1, 550.00)
+                ));
     }
 }

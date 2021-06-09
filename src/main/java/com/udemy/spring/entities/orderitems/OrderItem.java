@@ -1,5 +1,6 @@
 package com.udemy.spring.entities.orderitems;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.entities.order.Order;
 import com.udemy.spring.entities.product.Product;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "order_items")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -25,16 +25,24 @@ public class OrderItem implements Serializable {
     private Integer quantity;
     private Double price;
 
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        this.quantity = quantity;
+        this.price = price;
+        this.id.setOrder(order);
+        this.id.setProduct(product);
+    }
+
     public Double subTotal() {
         return quantity.doubleValue() * price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
 
     public void setOrder(Order order) {
-        id.setOrder(id.getOrder());
+        id.setOrder(order);
     }
 
     public Product getProduct() {
@@ -42,10 +50,6 @@ public class OrderItem implements Serializable {
     }
 
     public void setProduct(Product product) {
-        id.setProduct(id.getProduct());
-    }
-
-    public void setId(OrderProductPK id) {
-        this.id = id;
+        id.setProduct(product);
     }
 }

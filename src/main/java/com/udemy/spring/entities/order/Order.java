@@ -1,5 +1,6 @@
 package com.udemy.spring.entities.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.entities.orderitems.OrderItem;
 import com.udemy.spring.entities.user.User;
 import lombok.Data;
@@ -30,6 +31,11 @@ public class Order {
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
+
+    @JsonIgnore
+    public Set<OrderItem> getItems() {
+        return items;
+    }
 
     public Order(OrderStatus status, User owner) {
         this.createdAt = LocalDateTime.now();
