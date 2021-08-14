@@ -2,10 +2,12 @@ package com.udemy.spring.config;
 
 import com.udemy.spring.entities.Category;
 import com.udemy.spring.entities.Order;
+import com.udemy.spring.entities.OrderItem;
 import com.udemy.spring.entities.Product;
 import com.udemy.spring.entities.User;
 import com.udemy.spring.entities.enums.OrderStatus;
 import com.udemy.spring.repositories.CategoryRepository;
+import com.udemy.spring.repositories.OrderItemRepository;
 import com.udemy.spring.repositories.OrderRepository;
 import com.udemy.spring.repositories.ProductRepository;
 import com.udemy.spring.repositories.UserRepository;
@@ -15,9 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 @Configuration
 @Profile("test")
@@ -34,10 +34,13 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User(null, "Thiago", "thiago@email.com", "112233", new ArrayList<>());
-        User user2 = new User(null, "Amanda", "amanda@email.com", "445566", new ArrayList<>());
+        User user1 = new User(null, "Thiago", "thiago@email.com", "112233");
+        User user2 = new User(null, "Amanda", "amanda@email.com", "445566");
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
@@ -76,5 +79,13 @@ public class TestConfig implements CommandLineRunner {
         product4.getCategories().add(category6);
 
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+        OrderItem orderItem2 = new OrderItem(order1, product3, 1, product3.getPrice());
+        OrderItem orderItem3 = new OrderItem(order2, product3, 2, product3.getPrice());
+        OrderItem orderItem4 = new OrderItem(order3, product4, 2, product4.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
     }
 }
