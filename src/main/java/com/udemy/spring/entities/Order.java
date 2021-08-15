@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "orders")
-@NoArgsConstructor
 public class Order implements Serializable {
 
     @Id
@@ -33,6 +32,9 @@ public class Order implements Serializable {
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
+
+    public Order() {
+    }
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         super();

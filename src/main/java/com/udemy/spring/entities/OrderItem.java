@@ -13,9 +13,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "order_item")
-@NoArgsConstructor
-@Getter
-@Setter
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +21,9 @@ public class OrderItem implements Serializable {
 
     private Integer quantity;
     private Double price;
+
+    public OrderItem() {
+    }
 
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
         super();
@@ -48,6 +48,22 @@ public class OrderItem implements Serializable {
 
     public void setProduct(Product product) {
         id.setProduct(product);
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
