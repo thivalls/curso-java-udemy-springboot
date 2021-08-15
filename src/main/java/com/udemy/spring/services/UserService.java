@@ -1,6 +1,7 @@
 package com.udemy.spring.services;
 
 import com.udemy.spring.entities.User;
+import com.udemy.spring.entities.request.UserRequest;
 import com.udemy.spring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class UserService {
 
     public void remove(User user) {
         userRepository.delete(user);
+    }
+
+    public User update(Long id, UserRequest request) {
+        User updatedUser = request.toModel();
+        updatedUser.setId(id);
+        return userRepository.save(updatedUser);
     }
 }
