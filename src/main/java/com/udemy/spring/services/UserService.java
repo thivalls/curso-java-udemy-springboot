@@ -22,7 +22,11 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public User store(User newUser) {
+    public User insert(User newUser) {
         return userRepository.save(newUser);
+    }
+
+    public void remove(User user) {
+        userRepository.delete(user);
     }
 }

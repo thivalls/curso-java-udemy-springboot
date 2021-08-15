@@ -5,6 +5,7 @@ import com.udemy.spring.entities.request.UserRequest;
 import com.udemy.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +34,19 @@ public class UserResource {
     }
 
     @PostMapping
-    public  ResponseEntity<User> store(@RequestBody UserRequest request) {
-        User user = userService.store(request.toModel());
+    public  ResponseEntity<User> insert(@RequestBody UserRequest request) {
+        User user = userService.insert(request.toModel());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        User existUser = userService.findById(id);
+        if(existUser != null) {
+            userService.remove(existUser);
+        }
+
+        return ResponseEntity.noContent().build();
     }
 }
