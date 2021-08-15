@@ -3,6 +3,7 @@ package com.udemy.spring.config;
 import com.udemy.spring.entities.Category;
 import com.udemy.spring.entities.Order;
 import com.udemy.spring.entities.OrderItem;
+import com.udemy.spring.entities.Payment;
 import com.udemy.spring.entities.Product;
 import com.udemy.spring.entities.User;
 import com.udemy.spring.entities.enums.OrderStatus;
@@ -86,6 +87,12 @@ public class TestConfig implements CommandLineRunner {
         OrderItem orderItem4 = new OrderItem(order3, product4, 2, product4.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment paymentOrder1 = new Payment(null, Instant.parse("2021-08-15T22:00:00Z"), order1);
+        order1.setPayment(paymentOrder1);
+
+        orderRepository.save(order1);
+
 
     }
 }
