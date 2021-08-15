@@ -2,9 +2,6 @@ package com.udemy.spring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.spring.entities.pk.OrderItemPK;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -64,6 +61,10 @@ public class OrderItem implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getSubTotal() {
+        return quantity * price;
     }
 
     @Override
