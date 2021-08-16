@@ -2,6 +2,7 @@ package com.udemy.spring.services;
 
 import com.udemy.spring.entities.Product;
 import com.udemy.spring.repositories.ProductRepository;
+import com.udemy.spring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,6 @@ public class ProductService {
 
     public Product findById(Long id) {
         Optional<Product> product = productRepository.findById(id);
-        return product.orElse(null);
+        return product.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 }

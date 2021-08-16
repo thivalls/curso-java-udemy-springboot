@@ -2,6 +2,7 @@ package com.udemy.spring.services;
 
 import com.udemy.spring.entities.Category;
 import com.udemy.spring.repositories.CategoryRepository;
+import com.udemy.spring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,6 @@ public class CategoryService {
 
     public Category findById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
-        return category.orElse(null);
+        return category.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 }

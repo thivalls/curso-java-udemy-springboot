@@ -2,6 +2,7 @@ package com.udemy.spring.services;
 
 import com.udemy.spring.entities.Order;
 import com.udemy.spring.repositories.OrderRepository;
+import com.udemy.spring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,6 @@ public class OrderService {
 
     public Order findById(Long id) {
         Optional<Order> order = orderRepository.findById(id);
-        return order.orElse(null);
+        return order.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 }
