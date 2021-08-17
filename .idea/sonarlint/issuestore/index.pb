@@ -3,12 +3,8 @@ r
 Bsrc/main/java/com/udemy/spring/repositories/ProductRepository.java,e\1\e1bd4a04f76e0a2aa686fe70782628e1726bad08
 s
 Csrc/main/java/com/udemy/spring/repositories/CategoryRepository.java,5\d\5d87688e021a2937767e8f3dcb444a81b168bfca
-m
-=src/main/java/com/udemy/spring/resources/ProductResource.java,9\8\9817df6523d750b5e33250fe70bbae8ed3d6d940
 t
 Dsrc/main/java/com/udemy/spring/repositories/OrderItemRepository.java,2\1\21e8edaa7d35ad6d87b8ab2ced1885504c7e96f4
-k
-;src/main/java/com/udemy/spring/resources/OrderResource.java,b\5\b57a73d938fa380bc80eb78fbb9ed9320e4c3242
 p
 @src/main/java/com/udemy/spring/repositories/OrderRepository.java,8\7\87e5552f4c298b2026e9fb5e22750c63b20fed6e
 k

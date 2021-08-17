@@ -3,8 +3,10 @@ package com.udemy.spring.services;
 import com.udemy.spring.entities.User;
 import com.udemy.spring.entities.request.UserRequest;
 import com.udemy.spring.repositories.UserRepository;
+import com.udemy.spring.services.exceptions.DatabaseException;
 import com.udemy.spring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +31,15 @@ public class UserService {
     }
 
     public void remove(User user) {
-        userRepository.delete(user);
+        try {
+            userRepository.delete(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
-    public User update(Long id, UserRequest request) {
-        User updatedUser = request.toModel();
-        updatedUser.setId(id);
-        return userRepository.save(updatedUser);
+    public User update(Long id, User user) {
+        user.setId(id);
+        return userRepository.save(user);
     }
 }

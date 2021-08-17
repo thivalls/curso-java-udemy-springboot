@@ -44,19 +44,14 @@ public class UserResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         User existUser = userService.findById(id);
-        if (existUser == null) {
-            throw new IllegalArgumentException("Usuário não existe");
-        }
         userService.remove(existUser);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserRequest request) {
-        User user = userService.findById(id);
-        if (user == null) {
-            throw new IllegalArgumentException("Usuário não existe");
-        }
-        return ResponseEntity.ok().body(userService.update(id, request));
+        User checkUser = userService.findById(id);
+        User updatedUser = request.toModel();
+        return ResponseEntity.ok().body(userService.update(checkUser.getId(), updatedUser));
     }
 }
